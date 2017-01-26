@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 	<Frame name="M2LFrame" toplevel="true" movable="true" parent="UIParent" inherits="OptionFrameBoxTemplate">
 		<Size>
-			<AbsDimension x="125" y="45"/>
+			<AbsDimension x="125" y="90"/>
 		</Size>
 		<Anchors>
 			<Anchor point="TOP">
@@ -15,22 +15,42 @@
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name = "M2LString" inherits="GameFontNormal" text="0">
-					<Color r="1" g="1" b="1"/>
-					<Anchors>
-						<Anchor point="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="-8"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
 				<FontString inherits="GameFontNormalSmall" text="Kills to level up:">
 					<Color r="0.8" g="0.8" b="0.1"/>
 					<Anchors>
 						<Anchor point="CENTER">
 							<Offset>
-								<AbsDimension x="0" y="8"/>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "M2LString" inherits="GameFontNormal" text="0">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="-30"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" text="Time to level up:">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="30"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "M2LTimeString" inherits="GameFontNormal" text="0">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="15"/>
 							</Offset>
 						</Anchor>
 					</Anchors>

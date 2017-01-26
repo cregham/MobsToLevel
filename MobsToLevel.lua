@@ -6,6 +6,7 @@
 ----------------------------------------------------------------
 
 previousMobs = {};
+killTimes = {};
 
 function M2L_OnLoad()
     this:RegisterEvent("ADDON_LOADED");
@@ -19,11 +20,16 @@ function M2L_OnEvent()
 			local _, _, killedMob, XPGain = string.find(arg1, "(.+) dies, you gain (%d+) experience.");
 			if GetXPExhaustion() then
 				table.insert(previousMobs, math.floor(XPGain/2));
+				table.insert(killTimes,time());
 			else
 				table.insert(previousMobs, math.floor(XPGain));
+				table.insert(killTimes,time());
 			end
 			if table.getn(previousMobs) > 3 then
-				table.remove(previousMobs, 1)
+				table.remove(previousMobs, 1);
+			end
+			if table.getn(killTimes) > 10 then
+				table.remove(killTimes, 1);
 			end
 			M2L_Calc(XPGain);
 		end
@@ -66,6 +72,20 @@ function M2L_Calc(XPGain)
 		killsToGo = math.ceil((maxXP - curXP)/avgXP);
 		M2LString:SetText(killsToGo);
 	end
+	
+	local timeStamp = 0;
+	local timeDifferences = {};
+	for _,x in pairs(killTimes) do
+		if (table.getn(killTimes) > _) then
+		table.insert(timeDifferences,((killTimes[_+1] - x)));
+		end
+	end
+	for _,x in pairs(timeDifferences) do
+		timeStamp = timeStamp + x;
+	end
+	timeStamp = timeStamp / table.getn(timeDifferences);
+	timeStamp = timeStamp * killsToGo;
+	M2LTimeString:SetText(tostring(date('%H:%M:%S',timeStamp)));
 end
 
 function M2L_print(str, err)

@@ -78,39 +78,4 @@
 		</Scripts>
 	</Frame>
 	
-	<Button name="M2LCloseButton" inherits="UIPanelCloseButton">
-		<Size>
-			<AbsDimension x="30" y="30"/>
-		</Size>
-		<Anchors>
-			<Anchor point="LEFT" relativeTo="M2LFrame" relativePoint="RIGHT">
-				<Offset>
-					<AbsDimension x="-5" y="0"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
-		<Scripts>
-			<OnClick>
-				if M2LFrame:IsVisible() == 1 then
-					HideUIPanel(M2LFrame);
-					GameTooltip:SetText("Opens the MobsToLevel window.");
-				else
-					ShowUIPanel(M2LFrame);
-					GameTooltip:SetText("Close the MobsToLevel window.");
-				end
-			</OnClick>
-			<OnEnter>
-				GameTooltip:SetOwner(this, "ANCHOR_RIGHT", 0, -32);
-				if M2LFrame:IsVisible() == 1 then
-					GameTooltip:SetText("Close the MobsToLevel window.");
-				else
-					GameTooltip:SetText("Opens the MobsToLevel window.");
-				end
-				GameTooltip:Show();
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-		</Scripts>
-	</Button>
 </Ui> 

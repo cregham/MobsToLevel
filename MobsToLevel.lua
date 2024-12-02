@@ -51,26 +51,28 @@ function M2L_Calc(XPGain)
 	local maxXP = UnitXPMax("player");
 	
 	if restXP then
-		for _,x in pairs(previousMobs) do
-			avgXP = avgXP + x;
+		for _, x in pairs(previousMobs) do
+			avgXP = avgXP + x
 		end
-		avgXP = avgXP / table.getn(previousMobs);
+		avgXP = avgXP / table.getn(previousMobs)
 		if restXP > (maxXP - curXP) then
-			killsToGo = (maxXP - curXP)/(avgXP*2);
-			M2LString:SetText(killsToGo);
+			killsToGo = (maxXP - curXP) / (avgXP * 2)
+			killsToGo = math.floor(killsToGo + 0.5) -- Round to nearest whole number
+			M2LString:SetText(killsToGo)
 		else
-			restToGo = (restXP / avgXP);
-			killsToGo = (maxXP - curXP - restXP)/(avgXP);
-			killsToGo = math.ceil((killsToGo + restToGo));
-			M2LString:SetText(killsToGo);
+			restToGo = (restXP / avgXP)
+			killsToGo = (maxXP - curXP - restXP) / (avgXP)
+			killsToGo = math.ceil(killsToGo + restToGo) -- Round up since this is meant to be a total
+			M2LString:SetText(killsToGo)
 		end
 	else
-		for _,x in pairs(previousMobs) do
-			avgXP = avgXP + x;
+		for _, x in pairs(previousMobs) do
+			avgXP = avgXP + x
 		end
-		avgXP = avgXP / table.getn(previousMobs);
-		killsToGo = math.ceil((maxXP - curXP)/avgXP);
-		M2LString:SetText(killsToGo);
+		avgXP = avgXP / table.getn(previousMobs)
+		killsToGo = (maxXP - curXP) / avgXP
+		killsToGo = math.floor(killsToGo + 0.5) -- Round to nearest whole number
+		M2LString:SetText(killsToGo)
 	end
 	
 	local timeStamp = 0;
